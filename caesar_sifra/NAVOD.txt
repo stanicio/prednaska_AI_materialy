@@ -1,0 +1,284 @@
+================================================================================
+                    CAESAROVA ŠIFRA - NÁVOD K POUŽITÍ
+================================================================================
+
+Autor: Kamil Stanek
+Datum: 7. listopadu 2025
+
+================================================================================
+OBSAH BALÍČKU
+================================================================================
+
+1. caesar_cipher.py       - Hlavní aplikace s interaktivním menu
+2. test_caesar_auto.py    - Automatické testy všech funkcí
+3. demo_caesar.py         - Interaktivní demonstrace s příklady
+4. README_CAESAR.md       - Detailní dokumentace
+5. NAVOD.txt              - Tento soubor
+
+================================================================================
+RYCHLÝ START
+================================================================================
+
+1. SPUŠTĚNÍ HLAVNÍ APLIKACE
+   -------------------------
+
+   python caesar_cipher.py
+
+   Po spuštění se zobrazí menu s možnostmi:
+
+   1. Zašifrovat text (pevný posun)
+   2. Dešifrovat text (známý posun)
+   3. Zobrazit všech 26 variant dešifrování
+   4. Prolomit šifru pomocí frekvenční analýzy
+   5. Šifrovat pomocí číselného kódu
+   6. Dešifrovat pomocí číselného kódu
+   0. Konec
+
+
+2. AUTOMATICKÉ TESTY
+   ------------------
+
+   python test_caesar_auto.py
+
+   Spustí 6 automatických testů všech funkcí.
+   Výsledek: Uspesne: 6, Selhaly: 0
+
+
+3. INTERAKTIVNÍ DEMONSTRACE
+   -------------------------
+
+   python demo_caesar.py
+
+   Postupně projde 5 demo ukázek:
+   - Klasická Caesarova šifra
+   - ROT13
+   - Prolomení šifry
+   - Číselný kód
+   - Frekvenční analýza
+
+================================================================================
+PŘÍKLADY POUŽITÍ
+================================================================================
+
+PŘÍKLAD 1: Základní šifrování
+------------------------------
+
+1. Spusťte: python caesar_cipher.py
+2. Zvolte: 1 (Zašifrovat text)
+3. Zadejte text: Ahoj svete
+4. Zadejte posun: 3
+5. Výsledek: Dkrm vyhwh
+
+
+PŘÍKLAD 2: Najít správný posun (známe původní text)
+----------------------------------------------------
+
+1. Spusťte: python caesar_cipher.py
+2. Zvolte: 3 (Všech 26 variant)
+3. Zadejte zašifrovaný text: Dkrm vyhwh
+4. Prohlédněte všech 26 variant
+5. Najděte tu, která dává smysl: "Ahoj svete" (posun 3)
+
+
+PŘÍKLAD 3: Prolomení šifry (delší text)
+----------------------------------------
+
+1. Spusťte: python caesar_cipher.py
+2. Zvolte: 4 (Frekvenční analýza)
+3. Zadejte dlouhý zašifrovaný text (alespoň 50-100 znaků)
+4. Program automaticky odhadne posun podle četnosti písmen
+5. Zobrazí se nejpravděpodobnější varianty
+
+
+PŘÍKLAD 4: Šifrování s číselným kódem
+--------------------------------------
+
+1. Spusťte: python caesar_cipher.py
+2. Zvolte: 5 (Šifrovat pomocí číselného kódu)
+3. Zadejte text: AHOJ
+4. Zadejte číselný kód: 1234
+5. Výsledek: Každé písmeno má jiný posun
+   A + 1 → B
+   H + 2 → J
+   O + 3 → R
+   J + 4 → N
+   Výsledek: BJRN
+
+================================================================================
+CO JE CAESAROVA ŠIFRA?
+================================================================================
+
+Caesarova šifra je nejstarší známá šifrovací metoda. Princip:
+
+    Každé písmeno se posune o N pozic v abecedě.
+
+Příklad s posunem 3:
+
+    A → D
+    B → E
+    C → F
+    ...
+    X → A (cyklicky)
+    Y → B
+    Z → C
+
+Text:   AHOJ SVETE
+Posun:  3
+Šifra:  DKRM VYHWH
+
+================================================================================
+FREKVENČNÍ ANALÝZA - JAK TO FUNGUJE?
+================================================================================
+
+1. PRINCIP
+   -------
+   V češtině je nejčastější písmeno E (9.8%)
+   Caesarova šifra zachovává frekvenci písmen
+   → Nejčastější písmeno v šifře je pravděpodobně zašifrované E
+
+
+2. POSTUP
+   ------
+   a) Spočítáme četnost písmen v zašifrovaném textu
+   b) Najdeme nejčastější písmeno (např. H)
+   c) Předpokládáme: H je zašifrované E
+   d) Vypočítáme posun: H(7) - E(4) = 3
+   e) Dešifrujeme s posunem 3
+
+
+3. OMEZENÍ
+   -------
+   - Funguje dobře jen u delších textů (50+ znaků)
+   - Pro krátké texty může selhat
+   - Program nabízí více variant seřazených podle pravděpodobnosti
+
+================================================================================
+ŠIFROVÁNÍ S ČÍSELNÝM KÓDEM
+================================================================================
+
+Vylepšená verze Caesarovy šifry:
+
+    Každé písmeno má JINÝ posun podle číselného kódu
+
+Příklad:
+
+    Text:  A  H  O  J
+    Kód:   1  2  3  1  (opakuje se)
+
+    A + 1 → B
+    H + 2 → J
+    O + 3 → R
+    J + 1 → K
+
+    Výsledek: BJRK
+
+Výhody:
++ Těžší prolomit
++ Frekvenční analýza nefunguje
++ Každé E může být zašifrované jinak
+
+================================================================================
+ČASTÉ OTÁZKY
+================================================================================
+
+Q: Lze použít posun 0 nebo 26?
+A: Ano, ale text zůstane stejný (žádné šifrování)
+
+Q: Co se stane s diakritikou (č, š, ř)?
+A: Zůstane beze změny (šifrují se jen A-Z)
+
+Q: Funguje to i pro malá písmena?
+A: Ano! Aplikace zachovává velikost písmen
+
+Q: Co mezery a interpunkce?
+A: Zůstávají beze změny
+
+Q: Je to bezpečné?
+A: NE! Pouze pro vzdělávací účely. Pro skutečná data použijte AES.
+
+Q: Proč frekvenční analýza nefunguje na krátké texty?
+A: Krátké texty nemají reprezentativní statistiku písmen
+
+Q: Můžu použít jakýkoliv číselný kód?
+A: Ano! Čím delší, tím složitější (ale stále ne bezpečné)
+
+================================================================================
+TECHNICKÉ POŽADAVKY
+================================================================================
+
+- Python 3.6 nebo vyšší
+- Žádné externí knihovny (jen standardní knihovna)
+- Operační systém: Windows / Linux / macOS
+- Terminál podporující základní výstup
+
+================================================================================
+ŘEŠENÍ PROBLÉMŮ
+================================================================================
+
+PROBLÉM: "UnicodeEncodeError" při spuštění
+ŘEŠENÍ:  Použijte test_caesar_auto.py místo test_caesar.py
+         nebo nastavte kódování terminálu na UTF-8
+
+PROBLÉM: Program nejde spustit
+ŘEŠENÍ:  Zkontrolujte, že máte Python 3.6+
+         Příkaz: python --version
+
+PROBLÉM: Frekvenční analýza vrací špatný výsledek
+ŘEŠENÍ:  Text je pravděpodobně příliš krátký
+         Zkuste delší text (100+ znaků)
+
+================================================================================
+UKÁZKOVÉ TEXTY PRO TESTOVÁNÍ
+================================================================================
+
+KRÁTKÝ TEXT (pro základní šifrování):
+--------------------------------------
+Ahoj svete
+
+STŘEDNÍ TEXT (pro frekvenční analýzu):
+---------------------------------------
+Ve ctvrtek ve dvacet hodin se sejdeme u fontany
+Nezapomen prinest doklady a klice od auta
+
+DLOUHÝ TEXT (pro přesnou frekvenční analýzu):
+----------------------------------------------
+Kryptografie je veda o utajovani zprav Caesarova sifra je jedna
+z nejstarsich kryptografickych metod Ve sve dobe byla velmi efektivni
+protoze vetshina lidi neumet cist a psat Dnes je vsak tato metoda
+velmi snadno prolomitelna pomoci pocitace nebo i rucne Hlavni slabina
+spociva v zachovani frekvence pismen
+
+================================================================================
+DALŠÍ ZDROJE
+================================================================================
+
+README_CAESAR.md      - Detailní dokumentace s příklady
+demo_caesar.py        - Interaktivní demonstrace
+test_caesar_auto.py   - Ukázky kódu pro programátory
+
+Online:
+- Wikipedia: Caesarova šifra
+- Khan Academy: Kryptografie
+- CrypTool: Vzdělávací nástroj pro kryptografii
+
+================================================================================
+KONTAKT A ZPĚTNÁ VAZBA
+================================================================================
+
+Autor: Kamil Stanek
+Projekt: Demonstrace Caesarovy šifry
+Datum: 7. listopadu 2025
+
+Tento projekt byl vytvořen pro vzdělávací účely.
+Volně k použití a modifikaci.
+
+================================================================================
+LICENCE
+================================================================================
+
+Tento software je poskytován "jak je" bez jakýchkoliv záruk.
+Volně k použití pro vzdělávací a nekomerční účely.
+
+VAROVÁNÍ: NIKDY nepoužívejte Caesarovu šifru pro skutečné utajení dat!
+
+================================================================================
